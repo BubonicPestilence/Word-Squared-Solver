@@ -75,7 +75,7 @@ loop {
     fails += 1
     
     if fails > $fails_before_swap_tiles
-      puts failed
+      puts "failed"
     end
     
     user = base["user"]
