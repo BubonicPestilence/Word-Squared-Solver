@@ -11,10 +11,15 @@ class WordSquared
   )
   
   base_uri "http://wordsquared.com"
-  default_timeout 15
+  default_timeout 30
   
   def method_missing(meth, *args, &block)
-    self.class.send(meth, *args, &block)
+    begin
+      self.class.send(meth, *args, &block)
+    rescue Timeout::Error => e
+      puts "Got timeout on #{meth}"
+      retry
+    end
   end
   
   def self.to_dom html
