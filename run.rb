@@ -53,7 +53,7 @@ loop {
           best_word = solved.find { |w| w.size <= best_size }
           next unless best_word
           
-          puts "#{tile.x} #{tile.y} DIRECTION: #{direction.to_s} SIZE: #{best_size} WORD: #{best_word}"
+          printf("%5d %5d DIRECTION: %6s SIZE: %2d WORD: %s\n", tile.x, tile.y, direction, best_size, best_word)
           
           word = best_word
           resp = ws.play(tile, word, direction)
