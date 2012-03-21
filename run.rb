@@ -61,7 +61,7 @@ loop {
           if resp
             base = resp
             resp["if_word_was_completed"].each { |h| map[h["y"], h["x"]] = Tile.new(map, h["y"], h["x"], h["letter"], true) }
-            played = true
+            played = played ? played + 1 : 1
           end
         end
       end
@@ -69,9 +69,9 @@ loop {
   end
   
   if played
-    puts "played"
+    puts "Words completed for this batch: #{played}"
   else
-    puts "next && request"
+    puts "No completed words -.-"
     fails += 1
     
     if fails > $fails_before_swap_tiles
