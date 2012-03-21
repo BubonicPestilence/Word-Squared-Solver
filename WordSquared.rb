@@ -156,7 +156,8 @@ class WordSquared
   
   def swap_tiles
     params = {
-      :query => { game: game_id }
+      :query => { game: game_id },
+      :body => ""
     }
     
     resp = post("/v2/swap_rack", params)
