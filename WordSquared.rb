@@ -71,6 +71,11 @@ class WordSquared
     resp
   end
   
+  def handle_data resp
+    @letters = resp["assigned_letters"]
+    @short_link = resp["shortlink"]
+  end
+  
   def load_game
     params = {
       game: game_id
@@ -78,10 +83,7 @@ class WordSquared
     
     resp = post("/v2/load_game", :body => params)
     
-    if resp["result"] == "success"
-      @letters = resp["assigned_letters"]
-      @short_link = resp["shortlink"]
-    end
+    handle_data(resp) if resp["result"] == "success"
     
     resp
   end
@@ -143,14 +145,26 @@ class WordSquared
     resp = post("/v2/play", :body => params)
     
     if resp["result"] == "success"
-      @letters = resp["assigned_letters"]
-      @short_link = resp["shortlink"]
-      
+      handle_data(resp)
       resp["if_word_was_completed"] = if_word_was_completed
       
       return resp
     end
     
     false
+  end
+  
+  def swap_tiles
+    params = {
+      :query => { game: game_id }
+    }
+    
+    resp = post("/v2/swap_rack", params)
+    
+    if resp["result"] == "success"
+      handle_data(resp)
+    end
+    
+    resp
   end
 end

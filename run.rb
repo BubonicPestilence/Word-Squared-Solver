@@ -74,8 +74,12 @@ loop {
     puts "No completed words -.-"
     fails += 1
     
-    if fails > $fails_before_swap_tiles
-      puts "failed"
+    if $fails_before_swap_tiles and fails >= $fails_before_swap_tiles
+      print "Swapping tiles .. "
+      ws.swap_tiles
+      puts "OK"
+      
+      fails = 0
     end
     
     user = base["user"]
