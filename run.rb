@@ -53,12 +53,12 @@ loop {
           best_word = solved.find { |w| w.size <= best_size }
           next unless best_word
           
-          printf("%5d %5d DIRECTION: %6s SIZE: %2d WORD: %s\n", tile.x, tile.y, direction, best_size, best_word)
-          
           word = best_word
           resp = ws.play(tile, word, direction)
           
           if resp
+            printf("%5d %5d DIRECTION: %6s SIZE: %2d WORD: %s\n", tile.x, tile.y, direction, best_size, best_word)
+            
             base = resp
             resp["if_word_was_completed"].each { |h| map[h["y"], h["x"]] = Tile.new(map, h["y"], h["x"], h["letter"], true) }
             played = played ? played + 1 : 1
