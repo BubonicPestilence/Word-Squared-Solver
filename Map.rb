@@ -3,8 +3,8 @@ require_relative "Tile"
 class Map
   attr_accessor :tiles
   
-  WIDTH = 100
-  HEIGHT = 100
+  WIDTH = 300
+  HEIGHT = 300
   
   def self.bounds(y, x, buffer = 0)
     left = x - WIDTH / 2 - buffer
