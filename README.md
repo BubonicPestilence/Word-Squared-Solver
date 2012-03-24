@@ -10,8 +10,12 @@ A simple ruby application that solves your http://wordsquared.com/ :)
 
 ### Setup ruby
 
-    $> gem install httparty nokogiri
+```bash
+$> gem install httparty nokogiri
+```
 
 ### Run it
 
-    $> ruby run.rb
+```bash
+$> ruby run.rb
+```
