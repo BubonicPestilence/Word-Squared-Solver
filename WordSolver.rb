@@ -10,7 +10,7 @@ class WordSolver
   base_uri "http://wordsolver.net"
   default_timeout 15
   
-  def method_missing meth, *args, &block
+  def method_missing(meth, *args, &block)
     self.class.send(meth, *args, &block)
   end
   
