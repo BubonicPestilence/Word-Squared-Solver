@@ -16,8 +16,7 @@ class WordSquared
   def method_missing(meth, *args, &block)
     begin
       self.class.send(meth, *args, &block)
-    rescue Timeout::Error => e
-      puts "Got timeout on #{meth}"
+    rescue Timeout::Error, EOFError
       retry
     end
   end

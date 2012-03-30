@@ -19,7 +19,12 @@ class WordSolver
   end
   
   def self.get_dom(*args)
-    data = get(*args)
+    begin
+      data = get(*args)
+    rescue Timeout::Error, EOFError
+      retry
+    end
+    
     to_dom(data)
   end
   
